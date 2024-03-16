@@ -1,0 +1,4 @@
+discord
+discord.ext
+dotenv
+os
