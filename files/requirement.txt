@@ -1,4 +1,2 @@
-discord
-discord.ext
-dotenv
-os
+discord == 2.3.2
+dotenv == 0.05
