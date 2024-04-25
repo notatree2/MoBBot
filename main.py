@@ -18,10 +18,22 @@ bot = commands.Bot(command_prefix='$', intents=intents)
 @bot.event
 async def on_ready():
   print("hello there")
-  activity = discord.Activity(name="i am, over austria...",
+  activity = discord.Activity(name="over you, Austrian Empire..",
                               type=discord.ActivityType.watching)
   await bot.change_presence(activity=activity)
   synced = await bot.tree.sync()
+
+@bot.event
+async def on_message(message):
+  if message.author == bot.user:
+    return
+  if message.content.startswith("austria"):
+    await message.reply("austrian empire!!!")
+  if message.content.startswith("who is MoB"):
+    await message.reply(f"Hey look, buddy. I'm an engineer, that means I solve problems. Not problems like (What is beauty?), 'cause that would fall within the purview of your conundrums of philosophy. I solve practical problems! For instance, how am I gonna stop some big mean Mother-Hubbard from tearin' me a structurally superfluous new behind? The answer? Use a gun. And if that don't work, use more gun. Like this heavy-caliber tripod-mounted little-old-number designed by me. Built, by me. And you best hope... It's not pointed at you.- engineer tf2")
+  if message.content.startswith("what is this group") or message.content.startswith('what is this server'):
+    await message.reply("Hey, assuming that you dont know what this server is, you can **execute the command $serverinfo** or use the slash command!")
+
 
 
 @bot.hybrid_command(name="serverinfo", description="get all server info here")
@@ -122,6 +134,7 @@ async def serverstats(ctx):
     stickers = len(guild.stickers)
     threads = len(guild.threads)
     voice = len(guild.voice_channels)
+    members = len(guild.members)
   embedVar = discord.Embed(
       title="Server Stats",
       description="Displaying all statistics for the Austrian Empire",
@@ -138,6 +151,9 @@ async def serverstats(ctx):
   embedVar.add_field(name="Voice",
                      value=f"Voice Channels: {voice}",
                      inline=True)
+  embedVar.add_field(name="Members",
+   value=f"Members: {ctx.guild.member_count}",
+   inline=True)
   embedVar.set_footer(text="- The Austrian Empire")
   await ctx.send(embed=embedVar)
   #await ctx.send(f"Roles: {roles}, Channels: {channels}, Emojis: {emojis}, Stickers: {stickers}, Threads: {threads}, Voice Channels = {voice}")
