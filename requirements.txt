@@ -1,5 +1,6 @@
-wheel==0.43.0
+wheel==0.37.1
 setuptools==69.5.1
+pip==24.0
 customtkinter==5.2.0
 decorator==5.1.1
 defusedxml==0.7.1
